@@ -5,32 +5,19 @@ using UnityEngine;
 public class DiskScript : MonoBehaviour
 {
     public int ID { get; set; }
-    public Vector2 Position { get; set; }
+    private Vector2 position;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
+    public void LiftDisk(Rod origin) {
+        transform.position = new Vector2(transform.position.x, 3.5f);
+        origin.Disks.Remove(ID);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    public void PlaceDisk(Rod destination) {
-        //Debug.Log(destination.ID);
+    public void DropDisk(Rod destination, bool initial) {
         int diskCount = destination.Disks.Count;
-        Position = new Vector2(destination.ID == 0 ? -5.25f : destination.ID == 1 ? 0 : 5.25f, -3 + 0.5f * diskCount);
-        transform.position = Position;
-    }
+        position = new Vector2(destination.ID == 0 ? -5.25f : destination.ID == 1 ? 0 : 5.25f, -3 + 0.5f * diskCount);
+        transform.position = position;
 
-    public void LiftDisk() {
-        transform.position = new Vector2(transform.position.x, 3);
-    }
-
-    public void DropDisk() {
-
+        if (!initial)
+            destination.AddDisk(ID, this.gameObject);
     }
 }

@@ -14,7 +14,7 @@ public class Rod
 
     public void AddDisk(int id, GameObject disk) {
         disk.GetComponent<DiskScript>().ID = id;
-        disk.GetComponent<DiskScript>().PlaceDisk(this);
+        disk.GetComponent<DiskScript>().DropDisk(this, true);
         Disks.Add(id, disk);
     }
 }

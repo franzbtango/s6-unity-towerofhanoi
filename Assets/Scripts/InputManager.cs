@@ -8,12 +8,6 @@ public class InputManager : MonoBehaviour
     public bool ButtonS { get; private set; }
     public bool ButtonD { get; private set; }
 
-    void Start()
-    {
-        
-    }
-
-
     void Update()
     {
         ButtonA = Input.GetKeyDown(KeyCode.A);
