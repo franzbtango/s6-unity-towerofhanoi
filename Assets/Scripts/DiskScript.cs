@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class DiskScript : MonoBehaviour
 {
@@ -10,6 +8,7 @@ public class DiskScript : MonoBehaviour
     public void LiftDisk(Rod origin) {
         transform.position = new Vector2(transform.position.x, 3.5f);
         origin.Disks.Remove(ID);
+        FindObjectOfType<Globals>().Play("LiftDisk");
     }
 
     public void DropDisk(Rod destination, bool initial) {
@@ -17,7 +16,9 @@ public class DiskScript : MonoBehaviour
         position = new Vector2(destination.ID == 0 ? -5.25f : destination.ID == 1 ? 0 : 5.25f, -3 + 0.5f * diskCount);
         transform.position = position;
 
-        if (!initial)
+        if (!initial) {
             destination.AddDisk(ID, this.gameObject);
+            FindObjectOfType<Globals>().Play("DropDisk");
+        }
     }
 }
